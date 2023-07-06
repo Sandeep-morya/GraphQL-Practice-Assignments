@@ -7,26 +7,26 @@ let users = JSON.parse(data.trim());
 
 const typeDefs = `#graphql
 type User{
-    name:String
-    age:Int
+    	name:String
+    	age:Int
 	gender:String
 }
 type Query{
-    users:[User]
+    	users:[User]
 	user(gender:String!):[User]
 }
 input NewUser{
-    name:String!
-    age:Int!
+    	name:String!
+    	age:Int!
 	gender:String!
 }
 input EditUserProperties{
   	name:String
-    age:Int
+    	age:Int
 	gender:String
 }
 type Mutation{
-    createUser(data:NewUser!):User
+    	createUser(data:NewUser!):User
 	editUser(name:String!,modifications:EditUserProperties!):User
 	deleteUser(name:String):Boolean
 }
