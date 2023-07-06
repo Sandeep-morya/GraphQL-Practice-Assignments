@@ -1,0 +1,17 @@
+{
+	"name": "2---mutation",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.mjs",
+	"type": "module",
+	"scripts": {
+		"start": "nodemon server"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@apollo/server": "^4.7.5",
+		"graphql": "^16.7.1"
+	}
+}

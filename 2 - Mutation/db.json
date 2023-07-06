@@ -1,0 +1,5 @@
+﻿[
+	{ "name": "Akash", "gender": "male", "age": 20 },
+	{ "name": "Geeta", "age": 45, "gender": "female" },
+	{ "name": "Shabnam", "age": 58, "gender": "female" }
+]
