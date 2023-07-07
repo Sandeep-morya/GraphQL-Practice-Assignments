@@ -4,6 +4,7 @@ const typeDefs = `#graphql
     type User {
         _id:ID
         name: String
+        email: String
 	    age: Int
 	    gender: String
 	    createdAt: String
@@ -15,7 +16,6 @@ const typeDefs = `#graphql
         sender:ID
         reciever:ID
         createdAt:String
-
     }
     type Query {
         users:[User]
@@ -23,16 +23,26 @@ const typeDefs = `#graphql
     }
     input BioData {
         name: String!
+        email: String!
 	    age: Int!
 	    gender: String!
+        password:String!
     }
     input MessageData {
         content:String!
-        sender:ID!
         reciever:ID!
     }
+    type LoginResponse {
+        message:String
+        token:String
+    }
+    input Credetails {
+        email:String
+        password:String
+    }
     type Mutation {
-        createUser(bioData:BioData!):User
+        createUser(bioData:BioData!):String
+        loginUser(credetails:Credetails):LoginResponse
         createMessage(messageData:MessageData!):Message
     }
 `;

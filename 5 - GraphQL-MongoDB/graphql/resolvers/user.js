@@ -1,4 +1,4 @@
-﻿import MessageModel from "../model/messages.js";
+﻿import MessageModel from "../../model/messages.js";
 
 const User = {
 	messages: async (user) => {
