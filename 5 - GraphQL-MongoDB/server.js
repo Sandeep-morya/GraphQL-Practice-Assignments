@@ -8,6 +8,19 @@ import Mutation from "./graphql/mutation.js";
 import User from "./graphql/resolvers/user.js";
 import jwt from "jsonwebtoken";
 
+const context = async ({ req, res }) => {
+	const token = req.headers?.authorization?.replace("Bearer ", "");
+	if (token) {
+		try {
+			const userId = jwt.verify(token, process.env.JWT_SECRET);
+			return userId;
+		} catch (error) {
+			return undefined;
+		}
+	}
+	return undefined;
+};
+
 const server = new ApolloServer({
 	typeDefs,
 	resolvers: {
@@ -23,20 +36,7 @@ try {
 	console.log(`connected with the database of ${connection.name}`);
 
 	//  Server Connection
-	const { url } = await startStandaloneServer(server, {
-		context: async ({ req, res }) => {
-			const token = req.headers?.authorization?.replace("Bearer ", "");
-			if (token) {
-				try {
-					const userId = jwt.verify(token, process.env.JWT_SECRET);
-					return userId;
-				} catch (error) {
-					return undefined;
-				}
-			}
-			return undefined;
-		},
-	});
+	const { url } = await startStandaloneServer(server, { context });
 	console.log(`Server in running on ${url}`);
 } catch (err) {
 	console.log(`error in making connection \nReseason: ${err}`);

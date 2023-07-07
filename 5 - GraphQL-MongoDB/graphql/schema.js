@@ -1,6 +1,4 @@
-﻿import {} from "@apollo/server";
-
-const typeDefs = `#graphql
+﻿const typeDefs = `#graphql
     type User {
         _id:ID
         name: String
@@ -16,10 +14,6 @@ const typeDefs = `#graphql
         sender:ID
         reciever:ID
         createdAt:String
-    }
-    type Query {
-        users:[User]
-        user(id:ID!):User
     }
     input BioData {
         name: String!
@@ -39,6 +33,10 @@ const typeDefs = `#graphql
     input Credetails {
         email:String
         password:String
+    }
+    type Query {
+        users:[User]
+        user(id:ID!):User
     }
     type Mutation {
         createUser(bioData:BioData!):String
