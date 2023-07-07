@@ -16,14 +16,14 @@ const server = new ApolloServer({
 	},
 });
 
-mongoose
-	.connect(process.env.MONGO_URI)
-	.then(
-		({ connection }) =>
-			console.log(`connected with the database of ${connection.name}`),
-		startStandaloneServer(server).then(({ url }) =>
-			console.log(`Server in running on ${url}`),
-		),
-	)
-	.catch((err) => console.log(`error in making connection \nReseason: ${err}`));
-//
+try {
+	// MongoDB Connection
+	const { connection } = await mongoose.connect(process.env.MONGO_URI);
+	console.log(`connected with the database of ${connection.name}`);
+
+	//  Server Connection
+	const { url } = await startStandaloneServer(server);
+	console.log(`Server in running on ${url}`);
+} catch (err) {
+	console.log(`error in making connection \nReseason: ${err}`);
+}
