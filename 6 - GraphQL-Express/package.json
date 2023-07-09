@@ -1,0 +1,23 @@
+{
+	"name": "6---graphql-express",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.mjs",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "nodemon index.mjs"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@apollo/server": "^4.7.5",
+		"axios": "^1.4.0",
+		"cors": "^2.8.5",
+		"dotenv": "^16.3.1",
+		"express": "^4.18.2",
+		"graphql": "^16.7.1",
+		"socket.io": "^4.7.1"
+	}
+}
