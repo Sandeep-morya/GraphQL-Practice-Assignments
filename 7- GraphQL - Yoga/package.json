@@ -1,0 +1,12 @@
+{
+	"name": "graphql-yoga",
+	"version": "1.0.0",
+	"main": "index.js",
+	"type": "module",
+	"license": "MIT",
+	"dependencies": {
+		"graphql": "^16.7.1",
+		"graphql-yoga": "^4.0.3",
+		"uuid": "^9.0.0"
+	}
+}

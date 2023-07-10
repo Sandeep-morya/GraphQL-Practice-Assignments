@@ -37,11 +37,8 @@ const server = new ApolloServer({
 });
 
 await server.start();
-app.use(
-	express.json(),
-	cors(),
-	expressMiddleware(server, { context: context }),
-);
+app.use(express.json(), cors());
+app.use("/graphql", expressMiddleware(server, { context: context }));
 
 // const io = new Server(httpServer, { cors: { origin: "*" }, path: "/live" });
 
