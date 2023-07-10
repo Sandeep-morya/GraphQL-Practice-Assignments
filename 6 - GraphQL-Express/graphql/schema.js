@@ -33,12 +33,18 @@
         completed:Boolean
         createdBy:User
     }
+    type Chat {
+        id:ID!
+        user:String!
+        content:String!
+    }
     type Query {
         todos:[Todo]
         todo(id:ID):Todo
         users:[User]
         user(id:ID):User
         test:String
+        chats:[Chat]
     }
 `;
 export default typeDefs;

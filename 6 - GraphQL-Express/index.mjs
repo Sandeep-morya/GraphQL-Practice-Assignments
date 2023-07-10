@@ -5,12 +5,13 @@ import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
 import express from "express";
 import http from "http";
-// import { Server } from "socket.io";
+import { Server } from "socket.io";
 
-import Query from "./graphql/resolvers/Query.js";
+import Query, { updateChats } from "./graphql/resolvers/Query.js";
 import Todo from "./graphql/resolvers/Todo.js";
 import typeDefs from "./graphql/schema.js";
 import axios from "axios";
+
 const context = async () => {
 	const API = axios.create({
 		baseURL: "https://jsonplaceholder.typicode.com",
@@ -40,11 +41,15 @@ await server.start();
 app.use(express.json(), cors());
 app.use("/graphql", expressMiddleware(server, { context: context }));
 
-// const io = new Server(httpServer, { cors: { origin: "*" }, path: "/live" });
+const io = new Server(httpServer, { cors: { origin: "*" } });
 
-// io.on("connection", (socket) => {
-// 	console.log({ webSocket: socket.id });
-// });
+io.on("connection", (socket) => {
+	console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+	socket.on("new:message", ({ content, user }) => {
+		const chats = updateChats(content, user);
+		io.emit("chat:update", chats);
+	});
+});
 
 httpServer.listen(8080);
 console.log("🚀 Server ready at http://localhost:8080");
